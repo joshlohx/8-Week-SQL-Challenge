@@ -12,3 +12,36 @@ Please note that all the information regarding the case study has been sourced f
 
 ## Business Task
 Danny wants to use the data to answer a few simple questions about his customers, especially about their visiting patterns, how much money they’ve spent and also which menu items are their favourite. 
+
+## Entity Relationship Diagram
+
+![image](https://user-images.githubusercontent.com/81607668/127271130-dca9aedd-4ca9-4ed8-b6ec-1e1920dca4a8.png)
+
+***
+
+**1. What is the total amount each customer spent at the restaurant?**
+
+````sql
+SELECT s.customer_id, SUM(m.price) AS amount_spent 
+FROM sales s
+LEFT JOIN menu m
+ON s.product_id = m.product_id
+GROUP BY s.customer_id
+ORDER BY s.customer_id ASC;
+````
+
+#### Answer:
+
+| customer_id | total_sales |
+| ----------- | ----------- |
+| A           | 76          |
+| B           | 74          |
+| C           | 36          |
+
+- Customer A spent $76.
+- Customer B spent $74.
+- Customer C spent $36.
+
+***
+
+**2. How many days has each customer visited the restaurant?**
