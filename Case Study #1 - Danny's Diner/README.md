@@ -45,3 +45,86 @@ ORDER BY s.customer_id ASC;
 ***
 
 **2. How many days has each customer visited the restaurant?**
+
+````sql
+select s.customer_id, COUNT(distinct s.order_date) as num_visits
+from sales s
+group by s.customer_id
+order by num_visits DESC;
+````
+
+#### Answer:
+| customer_id | num_visits |
+| ----------- | ---------- |
+| B           | 6          |
+| A           | 4          |
+| C           | 2          |
+
+- Customer B visited 6 times.
+- Customer A visited 4 times.
+- Customer C visited 2 times.
+
+***
+
+**3. What was the first item from the menu purchased by each customer?**
+
+````sql
+WITH earliest_date AS (
+    SELECT 
+        sales.customer_id, 
+        MIN(sales.order_date) AS earliest_date
+    FROM sales
+    GROUP BY sales.customer_id
+)
+
+SELECT DISTINCT 
+    s.customer_id, 
+    m.product_name
+FROM sales s
+INNER JOIN earliest_date e 
+    ON s.customer_id = e.customer_id 
+    AND s.order_date = e.earliest_date
+INNER JOIN menu m 
+    ON s.product_id = m.product_id
+ORDER BY s.customer_id ASC;
+````
+
+#### Answer:
+| customer_id | product_name | 
+| ----------- | ----------- |
+| A           | curry        | 
+| A           | sushi        | 
+| B           | curry        | 
+| C           | ramen        |
+
+- Customer A placed an order for both curry and sushi simultaneously, making them the first items in the order.
+- Customer B's first order is curry.
+- Customer C's first order is ramen.
+
+***
+
+**4. What is the most purchased item on the menu and how many times was it purchased by all customers?**
+
+````sql
+SELECT 
+    menu.product_name, 
+    COUNT(sales.product_id) AS purchase_count
+FROM sales
+INNER JOIN menu 
+    ON sales.product_id = menu.product_id
+GROUP BY menu.product_name
+ORDER BY purchase_count DESC
+LIMIT 1;
+````
+
+#### Answer:
+| most_purchased | product_name | 
+| -------------- | ------------ |
+| 8              |    ramen     |
+
+
+- Most purchased item on the menu is ramen which is 8 times.
+
+***
+
+**5. Which item was the most popular for each customer?**
