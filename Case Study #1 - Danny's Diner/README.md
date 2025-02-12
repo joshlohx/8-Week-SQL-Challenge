@@ -128,3 +128,136 @@ LIMIT 1;
 ***
 
 **5. Which item was the most popular for each customer?**
+
+````sql
+WITH ranked_orders AS (
+    SELECT 
+        sales.customer_id, 
+        menu.product_name,
+        COUNT(sales.product_id) AS product_count,
+        DENSE_RANK() OVER (
+            PARTITION BY sales.customer_id 
+            ORDER BY COUNT(sales.product_id) DESC
+        ) AS rank
+    FROM sales
+    INNER JOIN menu 
+        ON sales.product_id = menu.product_id
+    GROUP BY sales.customer_id, menu.product_name
+)
+
+SELECT 
+    customer_id, 
+    product_name,
+    product_count
+FROM ranked_orders
+WHERE rank = 1;
+````
+
+#### Answer:
+| customer_id | product_name | order_count |
+| ----------- | ---------- |------------  |
+| A           | ramen        |  3   |
+| B           | sushi        |  2   |
+| B           | curry        |  2   |
+| B           | ramen        |  2   |
+| C           | ramen        |  3   |
+
+- Customer A and C's favourite item is ramen.
+- Customer B enjoys all items on the menu.
+
+***
+
+**6. Which item was purchased first by the customer after they became a member?**
+
+````sql
+WITH ranked_order_date AS (
+    SELECT 
+        sales.customer_id, 
+        sales.product_id,
+        RANK() OVER (
+            PARTITION BY sales.customer_id 
+            ORDER BY sales.order_date ASC
+        ) AS rank
+    FROM sales
+    INNER JOIN members 
+        ON sales.customer_id = members.customer_id
+        AND sales.order_date > members.join_date
+)
+
+SELECT 
+    ranked_order_date.customer_id, 
+    menu.product_name
+FROM ranked_order_date
+INNER JOIN menu 
+    ON ranked_order_date.product_id = menu.product_id
+WHERE rank = 1
+ORDER BY ranked_order_date.customer_id ASC;
+````
+
+#### Answer:
+| customer_id | product_name |
+| ----------- | ---------- |
+| A           | ramen        |
+| B           | sushi        |
+
+- Customer A's first order as a member is ramen.
+- Customer B's first order as a member is sushi.
+
+***
+
+**7. Which item was purchased just before the customer became a member?**
+
+````sql
+WITH purchased_prior_member AS (
+    SELECT 
+        sales.customer_id, 
+        sales.product_id,
+        sales.order_date,
+        members.join_date,
+        RANK() OVER (
+            PARTITION BY sales.customer_id 
+            ORDER BY sales.order_date DESC
+        ) AS rank
+    FROM sales
+    INNER JOIN members 
+        ON sales.customer_id = members.customer_id
+        AND sales.order_date < members.join_date
+)
+
+SELECT 
+    p_member.customer_id, 
+    menu.product_name
+FROM purchased_prior_member AS p_member 
+INNER JOIN menu 
+    ON p_member.product_id = menu.product_id
+WHERE p_member.rank = 1
+ORDER BY p_member.customer_id ASC;
+````
+
+#### Answer:
+| customer_id | product_name |
+| ----------- | ------------ |
+| A           | sushi        |
+| A           | curry        |
+| B           | sushi        |
+
+- Customer A's last order was both sushi and curry.
+- Customer B's last order was sushi.
+
+**8. What is the total items and amount spent for each member before they became a member?**
+
+````sql
+SELECT 
+    sales.customer_id,
+    COUNT(sales.product_id) AS total_items,
+    SUM(menu.price) AS amount_spent
+FROM sales
+INNER JOIN members 
+    ON sales.customer_id = members.customer_id
+    AND sales.order_date < members.join_date
+INNER JOIN menu 
+    ON sales.product_id = menu.product_id
+GROUP BY sales.customer_id
+ORDER BY sales.customer_id ASC;
+````
+
