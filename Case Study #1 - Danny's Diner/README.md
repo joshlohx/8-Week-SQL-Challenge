@@ -19,6 +19,8 @@ Danny wants to use the data to answer a few simple questions about his customers
 
 ***
 
+## Question and Solution
+
 **1. What is the total amount each customer spent at the restaurant?**
 
 ````sql
