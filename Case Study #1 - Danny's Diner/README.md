@@ -24,12 +24,12 @@ Danny wants to use the data to answer a few simple questions about his customers
 **1. What is the total amount each customer spent at the restaurant?**
 
 ````sql
-SELECT s.customer_id, SUM(m.price) AS amount_spent 
-FROM sales s
-LEFT JOIN menu m
-ON s.product_id = m.product_id
-GROUP BY s.customer_id
-ORDER BY s.customer_id ASC;
+SELECT sales.customer_id, SUM(menu.price) AS amount_spent
+FROM sales
+LEFT JOIN menu 
+    ON sales.product_id = menu.product_id
+GROUP BY sales.customer_id
+ORDER BY sales.customer_id ASC;
 ````
 
 #### Answer:
@@ -49,10 +49,10 @@ ORDER BY s.customer_id ASC;
 **2. How many days has each customer visited the restaurant?**
 
 ````sql
-select s.customer_id, COUNT(distinct s.order_date) as num_visits
-from sales s
-group by s.customer_id
-order by num_visits DESC;
+SELECT sales.customer_id, COUNT(DISTINCT sales.order_date) AS num_visits
+FROM sales
+GROUP BY sales.customer_id
+ORDER BY num_visits DESC;
 ````
 
 #### Answer:
