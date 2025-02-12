@@ -261,3 +261,87 @@ GROUP BY sales.customer_id
 ORDER BY sales.customer_id ASC;
 ````
 
+#### Answer:
+| customer_id | total_items | total_sales |
+| ----------- | ---------- |----------  |
+| A           | 2 |  25       |
+| B           | 3 |  40       |
+
+Before becoming members,
+- Customer A spent $25 on 2 items.
+- Customer B spent $40 on 3 items.
+
+***
+
+**9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier — how many points would each customer have?**
+
+````sql
+SELECT 
+    sales.customer_id, 
+    SUM(
+        CASE 
+            WHEN sales.product_id = '1' THEN 20 * menu.price
+            ELSE 10 * menu.price
+        END
+    ) AS total_points
+FROM sales
+LEFT JOIN menu 
+    ON sales.product_id = menu.product_id
+GROUP BY sales.customer_id
+ORDER BY total_points DESC;
+````
+
+#### Answer:
+| customer_id | total_points | 
+| ----------- | ------------ |
+| B           | 940          |
+| A           | 860          |
+| C           | 360          |
+
+- Total points for Customer A is $860.
+- Total points for Customer B is $940.
+- Total points for Customer C is $360.
+
+***
+
+**10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi — how many points do customer A and B have at the end of January?**
+
+```sql
+WITH dates_cte AS (
+  SELECT 
+    customer_id, 
+      join_date, 
+      join_date + 6 AS valid_date, 
+      DATE_TRUNC(
+        'month', '2021-01-31'::DATE)
+        + interval '1 month' 
+        - interval '1 day' AS last_date
+  FROM members
+)
+
+SELECT 
+  sales.customer_id, 
+  SUM(CASE
+    WHEN menu.product_name = 'sushi' THEN 2 * 10 * menu.price
+    WHEN sales.order_date BETWEEN dates.join_date AND dates.valid_date THEN 2 * 10 * menu.price
+    ELSE 10 * menu.price END) AS points
+FROM sales
+INNER JOIN dates_cte AS dates
+  ON sales.customer_id = dates.customer_id
+  AND dates.join_date <= sales.order_date
+  AND sales.order_date <= dates.last_date
+INNER JOIN menu
+  ON sales.product_id = menu.product_id
+GROUP BY sales.customer_id;
+````
+
+#### Answer:
+| customer_id | total_points | 
+| ----------- | ------------ |
+| A           | 1020         |
+| B           | 320          |
+
+- Total points for Customer A is 1,020.
+- Total points for Customer B is 320.
+
+***
