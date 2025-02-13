@@ -8,7 +8,10 @@ Looking at the `customer_orders` table below, we can see that there are
 - In the `exclusions` column, there are missing/ blank spaces ' ' and null values. 
 - In the `extras` column, there are missing/ blank spaces ' ' and null values.
 
-<img width="1063" alt="image" src="https://user-images.githubusercontent.com/81607668/129472388-86e60221-7107-4751-983f-4ab9d9ce75f0.png">
+<img width="1063" alt="image" src="![customer_orders](https://github.com/user-attachments/assets/6d8b5908-33b6-4989-87c5-83fa853d9d88)">
+
+
+
 
 Our course of action to clean the table:
 - Create a temporary table with all the columns
