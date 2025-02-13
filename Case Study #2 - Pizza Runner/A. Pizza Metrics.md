@@ -98,6 +98,79 @@ ORDER BY c.customer_id ASC;
 ### 6. What was the maximum number of pizzas delivered in a single order?
 
 ````sql
+WITH delivered_pizzas_per_order AS (
+    SELECT 
+        c.order_id, 
+        COUNT(c.pizza_id) AS pizza_count
+    FROM 
+        customer_orders_temp c
+    INNER JOIN 
+        runner_orders_temp r 
+        ON c.order_id = r.order_id
+        AND r.cancellation IS NULL
+    GROUP BY 
+        c.order_id
+)
 
+SELECT 
+    MAX(pizza_count) AS pizza_count
+FROM 
+    delivered_pizzas_per_order;
+````
+
+**Answer:**
+
+![image](https://user-images.githubusercontent.com/81607668/129738201-f676edd4-2530-4663-9ed8-6e6ec4d9cc68.png)
+
+- Maximum number of pizza delivered in a single order is 3 pizzas.
+
+### 7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+
+````sql
+SELECT 
+    c.customer_id,
+    COUNT(*) FILTER (WHERE exclusions IS NULL AND extras IS NULL) AS unchanged_count,
+    COUNT(*) FILTER (WHERE exclusions IS NOT NULL OR extras IS NOT NULL) AS changed_count
+FROM 
+    customer_orders_temp c
+INNER JOIN 
+    runner_orders_temp r
+    ON c.order_id = r.order_id
+    AND r.cancellation IS NULL
+GROUP BY 
+    c.customer_id
+ORDER BY 
+    c.customer_id ASC;
+````
+
+**Answer:**
+
+![image](https://private-user-images.githubusercontent.com/170286077/412687441-2e2c95ac-620c-42de-84d9-601903086f34.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk0MTM2MTEsIm5iZiI6MTczOTQxMzMxMSwicGF0aCI6Ii8xNzAyODYwNzcvNDEyNjg3NDQxLTJlMmM5NWFjLTYyMGMtNDJkZS04NGQ5LTYwMTkwMzA4NmYzNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjEzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxM1QwMjIxNTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iMmIwNzc0MmY0NzkxZjRkNmIwMWY4YzEyZWMzMmZiY2MzMTk5MmZiZDBmYzQxMTI0YzM3OTUxNDU2YjY2NjM3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.IKYRd4QNXEjKJ3H-6JYLO76NVeiCQijo7ofdNVWOZUU)
+
+- Customer 101 and 102 likes his/her pizzas per the original recipe.
+- Customer 103, 104 and 105 have their own preference for pizza topping and requested at least 1 change (extra or exclusion topping) on their pizza.
+
+### 8. How many pizzas were delivered that had both exclusions and extras?
+
+````sql
+SELECT 
+    COUNT(*) FILTER (WHERE exclusions IS NOT NULL AND extras IS NOT NULL) AS exclusions_and_extras
+FROM 
+    customer_orders_temp c
+INNER JOIN 
+    runner_orders_temp r
+    ON c.order_id = r.order_id
+    AND r.cancellation IS NULL;
+````
+
+**Answer:**
+
+![image](https://github.com/user-attachments/assets/6487e343-762d-4e94-869b-b0cf2ed4591e)
+
+- Only 1 pizza delivered that had both extra and exclusion topping.
+
+### 9. What was the total volume of pizzas ordered for each hour of the day?
+
+````sql
 
 
