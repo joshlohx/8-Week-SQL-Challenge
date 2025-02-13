@@ -8,10 +8,7 @@ Looking at the `customer_orders` table below, we can see that there are
 - In the `exclusions` column, there are missing/ blank spaces ' ' and null values. 
 - In the `extras` column, there are missing/ blank spaces ' ' and null values.
 
-<img width="1063" alt="image" src="https://private-user-images.githubusercontent.com/170286077/412667721-115774d7-e6af-4743-9682-3c35edca11b2.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk0MDc3MjMsIm5iZiI6MTczOTQwNzQyMywicGF0aCI6Ii8xNzAyODYwNzcvNDEyNjY3NzIxLTExNTc3NGQ3LWU2YWYtNDc0My05NjgyLTNjMzVlZGNhMTFiMi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjEzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxM1QwMDQzNDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05NTgxMTE2ZTdkZDhhNzBiZDBjMjVhOGNjYTg4MjRmNTI5NzkxN2ZiZDg0OGY0OGExNmMwY2VjNTM0M2NiZDY5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.AnGr0GgxfDqKwQW12DLp5C_tVFSEPX1L-6qrFi3xvaQ">
-
-
-
+<img width="1063" alt="image" src="https://user-images.githubusercontent.com/81607668/129472388-86e60221-7107-4751-983f-4ab9d9ce75f0.png">
 
 Our course of action to clean the table:
 - Create a temporary table with all the columns
@@ -31,7 +28,7 @@ FROM pizza_runner.customer_orders;
 
 This is how the clean `customers_orders_temp` table looks like and we will use this table to run all our queries.
 
-<img width="1058" alt="image" src="https://user-images.githubusercontent.com/81607668/129472551-fe3d90a0-1e8b-4f32-a2a7-2ecd3ac469ef.png">
+<img width="1058" alt="image" src="https://private-user-images.githubusercontent.com/170286077/412668088-cdecc928-a760-4003-ab39-7851a193a5f0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk0MDc4NDEsIm5iZiI6MTczOTQwNzU0MSwicGF0aCI6Ii8xNzAyODYwNzcvNDEyNjY4MDg4LWNkZWNjOTI4LWE3NjAtNDAwMy1hYjM5LTc4NTFhMTkzYTVmMC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjEzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxM1QwMDQ1NDFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04MjFmZDQ2ZWQ3ODdiN2I1ZTY5ZmNlOTU4ODIzMWE1ZjU0MTExNjEyNzNlYzg1NjgwMWYyZTI0Y2YxM2Q4NGI5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.F9Z4z1NUwVhjem1NzQOFSv3BdcDyZV8q56Z-SbLNcN8">
 
 ***
 
@@ -75,7 +72,7 @@ ALTER COLUMN duration TYPE INT USING duration::INT,
 
 This is how the clean `runner_orders_temp` table looks like and we will use this table to run all our queries.
 
-<img width="915" alt="image" src="https://user-images.githubusercontent.com/81607668/129472778-6403381d-6e30-4884-a011-737b1eff7379.png">
+<img width="915" alt="image" src="https://private-user-images.githubusercontent.com/170286077/412668591-c45cfed2-1e92-4b96-b303-29f889f0a1b9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk0MDc5OTIsIm5iZiI6MTczOTQwNzY5MiwicGF0aCI6Ii8xNzAyODYwNzcvNDEyNjY4NTkxLWM0NWNmZWQyLTFlOTItNGI5Ni1iMzAzLTI5Zjg4OWYwYTFiOS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjEzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxM1QwMDQ4MTJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iYzBkY2RmNDdhM2JjM2RhMDUwZTc3MmNmODMzYTcyNzJlNzNhZGVlOTBlNGY1ODZhZjk0ODk0OWYwZjQ1ZGQ5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.JOtHPlIhLclDpFm2rzakkD6xGUT83b8N5AjfFcbVetU">
 
 ***
 
