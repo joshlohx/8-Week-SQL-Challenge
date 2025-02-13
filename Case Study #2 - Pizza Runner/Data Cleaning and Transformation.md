@@ -41,7 +41,7 @@ Looking at the `runner_orders` table below, we can see that there are
 <img width="1037" alt="image" src="https://user-images.githubusercontent.com/81607668/129472585-badae450-52d2-442e-9d50-e4d0d8fce83a.png">
 
 Our course of action to clean the table:
-- In `pickup_time` column, remove blank space '' and replace with null.
+- In `pickup_time` column, remove 'null' (null as a string, not a true null value) and remove blank space '' and replace with null.
 - In `distance` column, remove "km" and blank space '' and replace with null.
 - In `duration` column, remove "minutes", "minute" and blank space '' and replace with null.
 - In `cancellation` column, remove 'null' (null as a string, not a true null value) and blank space ' ' and replace with null.
@@ -57,7 +57,10 @@ SELECT
     END AS pickup_time,  -- Replace 'null' with NULL
     NULLIF(REGEXP_REPLACE(TRIM(distance), '[^0-9]', '', 'g'), '') AS distance,
     NULLIF(REGEXP_REPLACE(TRIM(duration), '[^0-9]', '', 'g'), '') AS duration,
-    NULLIF(TRIM(cancellation), '') AS cancellation
+    CASE
+    	WHEN TRIM(cancellation) = 'null' THEN NULL
+        ELSE NULLIF(TRIM(cancellation), '') 
+    END AS cancellation
 FROM pizza_runner.runner_orders;
 ````
 
