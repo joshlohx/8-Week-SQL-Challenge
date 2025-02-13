@@ -5,13 +5,13 @@
 ### 1. How many pizzas were ordered?
 
 ````sql
-SELECT COUNT(*)
+SELECT COUNT(*) as pizzas_ordered
 FROM customer_orders_temp
 ````
 
 **Answer:**
 
-![1*Ma9L4y6O_zhln6Wy7CdWMQ](https://user-images.githubusercontent.com/81607668/129473598-d6d55ab2-59c7-4040-97db-d1b0c1c5b294.png)
+![image](https://github.com/user-attachments/assets/3a90597b-58c6-413c-b923-2077f59dc3de)
 
 - Total of 14 pizzas were ordered.
 
@@ -25,7 +25,7 @@ FROM #customer_orders;
 
 **Answer:**
 
-![image](https://user-images.githubusercontent.com/81607668/129737993-710198bd-433d-469f-b5de-14e4022a3a45.png)
+![image](https://github.com/user-attachments/assets/cf45a1ca-c557-4298-a177-75a3d8012443)
 
 - There are 10 unique customer orders.
 
@@ -33,14 +33,14 @@ FROM #customer_orders;
 
 ````sql
 SELECT runner_id, COUNT(DISTINCT order_id) AS successful_orders
-FROM pizza_runner.runner_orders_temp
+FROM runner_orders_temp
 WHERE cancellation IS NULL
 GROUP BY runner_id;
 ````
 
 **Answer:**
 
-![image](https://user-images.githubusercontent.com/81607668/129738112-6eada46a-8c32-495a-8e26-793b2fec89ef.png)
+![image](https://github.com/user-attachments/assets/9aadbd7a-ee32-4261-987a-778407a2a733)
 
 - Runner 1 has 4 successful delivered orders.
 - Runner 2 has 3 successful delivered orders.
@@ -50,11 +50,11 @@ GROUP BY runner_id;
 
 ````sql
 SELECT p.pizza_name, COUNT(c.pizza_id) AS delivered_pizza_count
-FROM pizza_runner.customer_orders_temp c
-INNER JOIN pizza_runner.runner_orders_temp r 
+FROM customer_orders_temp c
+INNER JOIN runner_orders_temp r 
     ON c.order_id = r.order_id
     AND r.cancellation IS NULL
-INNER JOIN pizza_runner.pizza_names p
+INNER JOIN pizza_names p
     ON c.pizza_id = p.pizza_id
 GROUP BY p.pizza_name
 ORDER BY delivered_pizza_count DESC;
@@ -62,7 +62,7 @@ ORDER BY delivered_pizza_count DESC;
 
 **Answer:**
 
-![image](https://user-images.githubusercontent.com/81607668/129738140-c9c002ff-5aed-48ab-bdfa-cadbd98973a9.png)
+![image](https://github.com/user-attachments/assets/f02d97f9-c14b-408d-a8cd-1e9d709593bf)
 
 - There are 9 delivered Meatlovers pizzas and 3 Vegetarian pizzas.
 
@@ -70,16 +70,8 @@ ORDER BY delivered_pizza_count DESC;
 
 ````sql
 SELECT c.customer_id, 
-       SUM(
-           CASE 
-               WHEN pizza_id = 1 THEN 1
-               ELSE 0
-           END) AS meatlovers_count,
-       SUM(
-           CASE 
-               WHEN pizza_id = 2 THEN 1
-               ELSE 0
-           END) AS vegetarian_count
+       COUNT(*) FILTER (WHERE pizza_id = 1) AS meatlovers_count,
+       COUNT(*) FILTER (WHERE pizza_id = 2) AS vegetarian_count
 FROM customer_orders_temp c
 GROUP BY c.customer_id
 ORDER BY c.customer_id ASC;
@@ -120,7 +112,7 @@ FROM
 
 **Answer:**
 
-![image](https://user-images.githubusercontent.com/81607668/129738201-f676edd4-2530-4663-9ed8-6e6ec4d9cc68.png)
+![image](https://github.com/user-attachments/assets/5e45c969-a240-41c3-9b66-6e7ad305a4ab)
 
 - Maximum number of pizza delivered in a single order is 3 pizzas.
 
@@ -180,22 +172,12 @@ GROUP BY order_hour, EXTRACT(HOUR FROM c.order_time)
 ORDER BY EXTRACT(HOUR FROM c.order_time);
 ````
 
-### 9. What was the total volume of pizzas ordered for each hour of the day?
-
-````sql
-SELECT 
-  DATEPART(HOUR, [order_time]) AS hour_of_day, 
-  COUNT(order_id) AS pizza_count
-FROM #customer_orders
-GROUP BY DATEPART(HOUR, [order_time]);
-````
-
 **Answer:**
 
 ![image](https://github.com/user-attachments/assets/5b31deb2-b054-40c4-8270-b243905de72a)
 
-- Highest volume of pizza ordered is at 1:00 pm, 6:00 pm and 9:00 pm.
-- Lowest volume of pizza ordered is at 11:00 am, 7:00 pm and 11:00 pm.
+- Highest volume of pizza ordered is at 1:00 pm, 9:00 pm and 11:00 pm.
+- Lowest volume of pizza ordered is at 11:00 am and 7:00 pm.
 
 ### 10. What was the volume of orders for each day of the week?
 
