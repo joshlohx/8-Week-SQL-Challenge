@@ -104,6 +104,4 @@ _(Average speed = Distance in km / Duration in hour)_
 - Runner 2 has 75% successful delivery.
 - Runner 3 has 50% successful delivery
 
-_(It’s not right to attribute successful delivery to runners as order cancellations are out of the runner’s control.)_
-
-***
+***Click [here]() for solution for C. Ingredient Optimisation!***
