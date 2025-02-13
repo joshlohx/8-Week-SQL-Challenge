@@ -172,5 +172,48 @@ INNER JOIN
 ### 9. What was the total volume of pizzas ordered for each hour of the day?
 
 ````sql
+SELECT 
+    TO_CHAR(c.order_time, 'HH AM') AS order_hour,
+    COUNT(c.pizza_id) AS pizza_count
+FROM customer_orders_temp c
+GROUP BY order_hour, EXTRACT(HOUR FROM c.order_time)
+ORDER BY EXTRACT(HOUR FROM c.order_time);
+````
 
+### 9. What was the total volume of pizzas ordered for each hour of the day?
 
+````sql
+SELECT 
+  DATEPART(HOUR, [order_time]) AS hour_of_day, 
+  COUNT(order_id) AS pizza_count
+FROM #customer_orders
+GROUP BY DATEPART(HOUR, [order_time]);
+````
+
+**Answer:**
+
+![image](https://github.com/user-attachments/assets/5b31deb2-b054-40c4-8270-b243905de72a)
+
+- Highest volume of pizza ordered is at 1:00 pm, 6:00 pm and 9:00 pm.
+- Lowest volume of pizza ordered is at 11:00 am, 7:00 pm and 11:00 pm.
+
+### 10. What was the volume of orders for each day of the week?
+
+````sql
+SELECT 
+    TO_CHAR(c.order_time, 'Day') AS order_day,
+    COUNT(c.pizza_id) AS pizza_count
+FROM customer_orders_temp c
+GROUP BY order_day, TO_CHAR(c.order_time, 'D')
+ORDER BY TO_CHAR(c.order_time, 'D') asc;
+````
+
+ **Answer:**
+
+![image](https://github.com/user-attachments/assets/832329fd-242a-481f-a120-06a023de348c)
+
+- There are 5 pizzas ordered on Friday and Monday.
+- There are 3 pizzas ordered on Saturday.
+- There is 1 pizza ordered on Sunday.
+
+***Click [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/B.%20Runner%20and%20Customer%20Experience.md) for solution for B. Runner and Customer Experience!***
