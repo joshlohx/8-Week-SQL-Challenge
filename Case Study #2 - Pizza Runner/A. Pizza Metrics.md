@@ -90,9 +90,9 @@ ORDER BY c.customer_id ASC;
 ![image](https://private-user-images.githubusercontent.com/170286077/412680469-73402963-5ec3-43d7-9198-0f115905ea73.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk0MTE1NzUsIm5iZiI6MTczOTQxMTI3NSwicGF0aCI6Ii8xNzAyODYwNzcvNDEyNjgwNDY5LTczNDAyOTYzLTVlYzMtNDNkNy05MTk4LTBmMTE1OTA1ZWE3My5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjEzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxM1QwMTQ3NTVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00OWVkZTE2YTk4YWUzNWI4MWI3NjI3YjU1NTZkYTYyYjBlMjk4NzZjNTQ2MTUzNjhlZWUzMjZmNjBhZjMxMzg0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.1Go53i_c7C_1_3bdDd2FbMdOSYejsplkCrNTdmfYbGE)
 
 - Customer 101 ordered 2 Meatlovers pizzas and 1 Vegetarian pizza.
-- Customer 102 ordered 2 Meatlovers pizzas and 2 Vegetarian pizzas.
+- Customer 102 ordered 2 Meatlovers pizzas and 1 Vegetarian pizzas.
 - Customer 103 ordered 3 Meatlovers pizzas and 1 Vegetarian pizza.
-- Customer 104 ordered 1 Meatlovers pizza.
+- Customer 104 ordered 3 Meatlovers pizza.
 - Customer 105 ordered 1 Vegetarian pizza.
 
 ### 6. What was the maximum number of pizzas delivered in a single order?
