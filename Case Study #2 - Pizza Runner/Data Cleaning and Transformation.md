@@ -8,7 +8,7 @@ Looking at the `customer_orders` table below, we can see that there are
 - In the `exclusions` column, there are missing/ blank spaces ' ' and null values. 
 - In the `extras` column, there are missing/ blank spaces ' ' and null values.
 
-<img width="1063" alt="image" src="![customer_orders](https://github.com/user-attachments/assets/6d8b5908-33b6-4989-87c5-83fa853d9d88)">
+<img width="1063" alt="image" src="https://private-user-images.githubusercontent.com/170286077/412667721-115774d7-e6af-4743-9682-3c35edca11b2.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk0MDc3MjMsIm5iZiI6MTczOTQwNzQyMywicGF0aCI6Ii8xNzAyODYwNzcvNDEyNjY3NzIxLTExNTc3NGQ3LWU2YWYtNDc0My05NjgyLTNjMzVlZGNhMTFiMi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjEzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxM1QwMDQzNDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05NTgxMTE2ZTdkZDhhNzBiZDBjMjVhOGNjYTg4MjRmNTI5NzkxN2ZiZDg0OGY0OGExNmMwY2VjNTM0M2NiZDY5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.AnGr0GgxfDqKwQW12DLp5C_tVFSEPX1L-6qrFi3xvaQ">
 
 
 
