@@ -212,8 +212,8 @@ ORDER BY TO_CHAR(c.order_time, 'D') asc;
 
 ![image](https://github.com/user-attachments/assets/832329fd-242a-481f-a120-06a023de348c)
 
-- There are 5 pizzas ordered on Friday and Monday.
-- There are 3 pizzas ordered on Saturday.
-- There is 1 pizza ordered on Sunday.
+- There are 5 pizzas ordered on Wednesday and Saturday.
+- There are 3 pizzas ordered on Thursday.
+- There is 1 pizza ordered on Friday.
 
 ***Click [here](https://github.com/katiehuangx/8-Week-SQL-Challenge/blob/main/Case%20Study%20%232%20-%20Pizza%20Runner/B.%20Runner%20and%20Customer%20Experience.md) for solution for B. Runner and Customer Experience!***
