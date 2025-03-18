@@ -572,18 +572,3 @@ FROM before_after_changes;
 There was a fair bit of percentage differences in all 3 years. However, now when you compare the worst year to their best year in 2018, the sales percentage difference is even more stark at a difference of 3.77% (1.63% + 2.14%).
 
 When comparing the sales performance across all three years, there were noticeable variations in the percentage differences. However, the most significant contrast emerges when comparing the worst-performing year in 2020 to the best-performing year in 2018. In this comparison, the sales percentage difference becomes even more apparent with a significant gap of 3.77% (1.63% + 2.14%).
-
-***
-
-## D. Bonus Question
-
-Which areas of the business have the highest negative impact in sales metrics performance in 2020 for the 12 week before and after period?
-- `region`
-- `platform`
-- `age_band`
-- `demographic`
-- `customer_type`
-
-Do you have any further recommendations for Danny’s team at Data Mart or any interesting insights based off this analysis?
-
-***
