@@ -563,5 +563,3 @@ FROM variance_cte;
 - Among the customers, 20.2% transitioned from having a positive balance (`ending_balance`) in the first month to having a negative balance (`following_balance`) in the following month.
 
 ***
-
-Do give me a 🌟 if you like what you're reading. Thank you! 🙆🏻‍♀️
