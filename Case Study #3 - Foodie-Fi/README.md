@@ -48,12 +48,6 @@ When customers churn, they will keep their access until the end of their current
 
 ## Question and Solution
 
-Please join me in executing the queries using PostgreSQL on [DB Fiddle](https://www.db-fiddle.com/f/rHJhRrXy5hbVBNJ6F6b9gJ/16). It would be great to work together on the questions!
-
-Additionally, I have also published this case study on [Medium](https://medium.com/analytics-vidhya/8-week-sql-challenge-case-study-3-foodie-fi-3d8497376ea9?sk=579afc01c30aa6149d85050f8a46ddef).
-
-If you have any questions, reach out to me on [LinkedIn](https://www.linkedin.com/in/katiehuangx/).
-
 ## 🎞️ A. Customer Journey
 
 Based off the 8 sample customers provided in the sample subscriptions table below, write a brief description about each customer’s onboarding journey.
@@ -402,8 +396,6 @@ JOIN annual_plan AS annual
 - On average, customers take approximately 105 days from the day they join Foodie-Fi to upgrade to an annual plan.
 
 ### 10. Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
-
-To understand how the `WIDTH_BUCKET()` function works in creating buckets of 30-day periods, you can refer to this [StackOverflow](https://stackoverflow.com/questions/50518548/creating-a-bin-column-in-postgres-to-check-an-integer-and-return-a-string) answer.
 
 ```sql
 WITH trial_plan AS (
