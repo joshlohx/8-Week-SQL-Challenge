@@ -68,9 +68,9 @@ Then, we alter the `pickup_time`, `distance` and `duration` columns to the corre
 
 ````sql
 ALTER TABLE runner_orders_temp
-ALTER COLUMN pickup_time TYPE TIMESTAMP WITHOUT TIME ZONE using pickup_time::TIMESTAMP WITHOUT TIME ZONE
+ALTER COLUMN pickup_time TYPE TIMESTAMP WITHOUT TIME ZONE using pickup_time::TIMESTAMP WITHOUT TIME ZONE,
 ALTER COLUMN distance TYPE FLOAT USING distance::FLOAT,
-ALTER COLUMN duration TYPE INT USING duration::INT,
+ALTER COLUMN duration TYPE INT USING duration::INT;
 ````
 
 This is how the clean `runner_orders_temp` table looks like and we will use this table to run all our queries.
