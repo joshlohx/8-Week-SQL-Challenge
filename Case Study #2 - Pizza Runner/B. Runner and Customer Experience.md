@@ -49,16 +49,33 @@ ORDER BY runner_id ASC;
 ### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
 ````sql
+WITH temp AS (
+    SELECT 
+        cust.order_id,
+        DATE_TRUNC('minute', pickup_time - order_time) AS prepare_time,
+        COUNT(*) AS pizza_num
+    FROM customer_orders_temp AS cust
+    INNER JOIN runner_orders_temp AS runner
+        ON cust.order_id = runner.order_id
+    WHERE pickup_time IS NOT NULL
+    GROUP BY cust.order_id, prepare_time
+)
 
+SELECT 
+    pizza_num, 
+    AVG(prepare_time) AS average_prepare_time
+FROM temp
+GROUP BY pizza_num
+ORDER BY pizza_num ASC;
 ````
 
 **Answer:**
 
-![image]()
+![image](https://github.com/user-attachments/assets/9f0f17fc-2b43-402e-a1f0-26fc11ff47e8)
 
-- On average, a single pizza order takes 12 minutes to prepare.
-- An order with 3 pizzas takes 30 minutes at an average of 10 minutes per pizza.
-- It takes 16 minutes to prepare an order with 2 pizzas which is 8 minutes per pizza — making 2 pizzas in a single order the ultimate efficiency rate.
+
+- On average, a single pizza order takes 12 minutes to prepare and an order with 3 pizzas takes 29 minutes.
+- It takes 18 minutes to prepare an order with 2 pizzas which is 9 minutes per pizza — making 2 pizzas in a single order the ultimate efficiency rate.
 
 ### 4. Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
