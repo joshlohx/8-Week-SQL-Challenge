@@ -55,7 +55,7 @@ SELECT
         WHEN TRIM(pickup_time) = 'null' THEN NULL
         ELSE NULLIF(TRIM(pickup_time), '')
     END AS pickup_time,  -- Replace 'null' with NULL
-    NULLIF(REGEXP_REPLACE(TRIM(distance), '[^0-9]', '', 'g'), '') AS distance,
+    NULLIF(REGEXP_REPLACE(TRIM(distance), '[^0-9.]', '', 'g'), '') AS distance,
     NULLIF(REGEXP_REPLACE(TRIM(duration), '[^0-9]', '', 'g'), '') AS duration,
     CASE
     	WHEN TRIM(cancellation) = 'null' THEN NULL
