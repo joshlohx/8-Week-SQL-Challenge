@@ -77,7 +77,7 @@ ORDER BY pizza_num ASC;
 - On average, a single pizza order takes 12 minutes to prepare and an order with 3 pizzas takes 29 minutes.
 - It takes 18 minutes to prepare an order with 2 pizzas which is 9 minutes per pizza — making 2 pizzas in a single order the ultimate efficiency rate.
 
-### 4. Is there any relationship between the number of pizzas and how long the order takes to prepare?
+### 4. What was the average distance travelled for each customer?
 
 ````sql
 
