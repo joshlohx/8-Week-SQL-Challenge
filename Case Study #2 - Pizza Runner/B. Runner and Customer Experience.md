@@ -5,12 +5,18 @@
 ### 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 
 ````sql
-
+SELECT 
+    ((registration_date - '2021-01-01') / 7) + 1 AS weeknr,
+    registration_date - ((registration_date - '2021-01-01') % 7) AS week_start_date,
+    COUNT(*) AS sign_ups
+FROM runners
+GROUP BY weeknr, week_start_date
+ORDER BY week_start_date;
 ````
 
 **Answer:**
 
-![image]()
+![image](https://ibb.co/dJgwbjrr)
 
 - On Week 1 of Jan 2021, 2 new runners signed up.
 - On Week 2 and 3 of Jan 2021, 1 new runner signed up.
