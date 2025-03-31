@@ -25,14 +25,26 @@ ORDER BY week_start_date;
 ### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 ````sql
-
+SELECT 
+    runner_id, 
+    DATE_TRUNC('minute', AVG(pickup_time - order_time)) AS average_pickup_time
+FROM customer_orders_temp AS cust
+INNER JOIN runner_orders_temp AS runner
+    ON cust.order_id = runner.order_id
+WHERE pickup_time IS NOT NULL
+GROUP BY runner_id
+ORDER BY runner_id ASC;
 ````
 
 **Answer:**
 
-![image]()
+![image](https://github.com/user-attachments/assets/2b9f8902-d9f9-4583-b315-ac66d70f2690)
 
-- The average time taken in minutes by runners to arrive at Pizza Runner HQ to pick up the order is 15 minutes.
+- The average time taken in minutes by runner 1 is 15 minutes.
+- The average time taken in minutes by runner 2 is 23 minutes.
+- The average time taken in minutes by runner 3 is 10 minutes.
+
+*Note: This solution assumed we want the minute taken by each runner ROUNDED DOWN.*
 
 ### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
 
