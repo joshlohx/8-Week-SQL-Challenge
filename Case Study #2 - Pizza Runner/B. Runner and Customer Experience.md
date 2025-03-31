@@ -16,7 +16,8 @@ ORDER BY week_start_date;
 
 **Answer:**
 
-![image](https://ibb.co/dJgwbjrr)
+![image](https://github.com/user-attachments/assets/3390832e-865f-461b-95dc-af8c59ad25e6)
+
 
 - On Week 1 of Jan 2021, 2 new runners signed up.
 - On Week 2 and 3 of Jan 2021, 1 new runner signed up.
